@@ -1,0 +1,12 @@
+name: explotionmine
+main: pj.explotionmine.Main
+version: 999
+commands:
+  explosionmine:
+    description: sss
+  exmine:
+    description: sss
+  levelmob:
+    description: sss
+  lmb:
+    description: sss
