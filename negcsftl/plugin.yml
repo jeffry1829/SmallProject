@@ -1,0 +1,6 @@
+name: negcsftl
+main: negc.sftl.Main
+version: 0.1
+commands:
+  negcsftl:
+    description: MainCommand
