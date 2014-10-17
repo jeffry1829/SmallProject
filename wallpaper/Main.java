@@ -37,6 +37,7 @@ public static void Show()
 		 // Step 4: 設定視窗顯示在螢幕中央 
 		 f.setLocationRelativeTo(null);
 		 
+		wall.button=new Button[Timer];
 		for(int i=1;i<Timer;i++)
 		{
 			wall.button[i]=new Button();
