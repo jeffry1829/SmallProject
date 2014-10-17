@@ -11,9 +11,8 @@ class Wallpaper implements ActionListener{
 	static String[] arg;
 	public static void main(String args[]) throws Exception
 {
-	arg=new String[10];
-	arg[0]=args[0];
-	int random = (int)Math.random();
+	Timer=Integer.parseInt(args[0]);
+	int random = (int)Math.random()*100;
 	Show();
 	/*
 	*未完成
@@ -38,7 +37,7 @@ public static void Show()
 		 // Step 4: 設定視窗顯示在螢幕中央 
 		 f.setLocationRelativeTo(null);
 		 
-		for(int i=1;i<Integer.parseInt(arg[0]);i++)
+		for(int i=1;i<Timer;i++)
 		{
 			wall.button[i]=new Button();
 			f.add(wall.button[i]);	
