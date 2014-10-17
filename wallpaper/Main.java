@@ -71,7 +71,7 @@ public void Return()
 				+ fd.getFile();
 	}
 public void actionPerformed(ActionEvent e){
-		if(!e.getActionCommand().equals("RUN")){
+		if(e.getActionCommand()!="RUN!"){
 		Return();
 	}else{
 	try{
