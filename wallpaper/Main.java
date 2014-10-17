@@ -30,7 +30,7 @@ public static void Show()
 		wall.button=new Button[Timer];
 		for(int i=1;i<Timer;i++)
 		{
-			wall.button[i]=new Button();
+			wall.button[i]=new Button(""+i);
 			wall.button[i].addActionListener(new Wallpaper());
 			f.add(wall.button[i]);	
 		}
@@ -79,7 +79,4 @@ public void actionPerformed(ActionEvent e){
 	}catch(Exception e1){}
 	}
 	}
-
-
-
 }
