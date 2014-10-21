@@ -18,7 +18,7 @@ class Wallpaper implements ActionListener{
 	//
 public static void Show()
 	 {
-	Wallpaper wall=new Wallpaper();
+		 Wallpaper wall=new Wallpaper();
 		 f = new JFrame("請選擇"); 		
 		 
 		 f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
@@ -28,7 +28,7 @@ public static void Show()
 		 f.setLocationRelativeTo(null);
 		 
 		wall.button=new Button[Timer];
-		for(int i=1;i<Timer;i++)
+		for(int i=0;i<Timer;i++)
 		{
 			wall.button[i]=new Button(""+i);
 			wall.button[i].addActionListener(new Wallpaper());
@@ -58,21 +58,21 @@ public void RUN() throws Exception
         f.createNewFile();    
         fw.write
 (
-        Filename[Timers]
+        Filename[Timer]
 );
 }
-public void Return()
+public void Return(int Number)
 	{
-		Timers=Timers+1;
+	 	Filename=new String[Timer];	
 		FileDialog fd = new FileDialog(f,"開啟圖檔",FileDialog.LOAD);
 		fd.setVisible(true);
-		Filename[Timers]=fd.getDirectory() + 
+		Filename[Number]=fd.getDirectory() + 
 				 System.getProperty("file.separator").charAt(0) 
 				+ fd.getFile();
 	}
 public void actionPerformed(ActionEvent e){
 		if(e.getActionCommand()!="RUN!"){
-		Return();
+		Return(Integer.parseInt(e.getActionCommand()));
 	}else{
 	try{
 	RUN();
