@@ -45,11 +45,15 @@ public void RUN() throws Exception
 	FileWriter fw = new FileWriter("./"+random+"wallpaper.xml",true);
         File f = new File("./"+random+"wallpaper.xml");
 	BufferedWriter bw=new BufferedWriter(fw);
-        if(!f.exists()){f.createNewFile();}    
+        if(!f.exists()){f.createNewFile();}
+	bw.write("<background><starttime><year>2014</year><month>10</month><day>6</day><hour>00</hour><minute>00</minute><second>00</second></starttime>");    
         for(int i=0;i<Timer;i++)
-{
-	bw.write("\r\n"+Filename[i]);
+{if (i!=Timer-1){
+	bw.write("<static><duration>30.0</duration><file>"+Filename[i]+"</file></static><transition><duration>5.0</duration><from>"+Filename[i]+"</from>"+"<to>"+Filename[i+1]+"</to></transition>");
 }
+else{bw.write("<static><duration>30.0</duration><file>"+Filename[i]+"</file></static>");}
+}
+bw.write("</background>");
 bw.close();
 }
 public void Return(int Number)
