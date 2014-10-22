@@ -44,13 +44,13 @@ public void RUN() throws Exception
 	int random = (int)(Math.random()*100000);
 	FileWriter fw = new FileWriter("./"+random+"wallpaper.xml",true);
         File f = new File("./"+random+"wallpaper.xml");
+	BufferedWriter bw=new BufferedWriter(fw);
         if(!f.exists()){f.createNewFile();}    
         for(int i=0;i<Timer;i++)
 {
-	fw.write("\r\n"+Filename[i]);
+	bw.write("\r\n"+Filename[i]);
 }
-fw.flush();
-fw.close();
+bw.close();
 }
 public void Return(int Number)
 	{
