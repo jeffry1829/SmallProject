@@ -6,13 +6,11 @@ import javax.swing.*;
 class Wallpaper implements ActionListener{
 	Button[] button;
 	static int Timer;
-	static int Timers; 
-	static String[] Filename; // 目前的檔名 
-	static JFrame f; // 目前的視窗
-	static String[] arg;
+	static JFrame f;
 	public static void main(String args[])
 {
 	Timer=Integer.parseInt(args[0]);
+	public static String[] Filename=new String[Timer];	
 	Show();
 }
 	//
@@ -37,33 +35,26 @@ public static void Show()
 		Button RUN=new Button("RUN!");
 		RUN.addActionListener(new Wallpaper());
 		f.add(RUN);
-		// Step 5:Another 
-		// JMenuBar jmb=new JMenuBar();
-		// JMenu jm=new JMenu("Select a File");
-		// JMenuItem jmi=new JMenuItem("Select~");
-		// 將JMenuItem 加上ActionListener註冊 按到會跑到actionPerformed
-		//jmi.addActionListener(new Wallpaper());
-		// jm.add(jmi);
-		// jmb.add(jm);		 
-		// f.setJMenuBar(jmb);		 
-		// Step X: 顯示出視窗 
 		f.pack();
 		f.setVisible(true); 
 	 }
 public void RUN() throws Exception
 {
-	int random = (int)Math.random()*100;
-	FileWriter fw = new FileWriter("./"+random+"wallpaper.xml");
+	int random = (int)(Math.random()*100000);
+	FileWriter fw = new FileWriter("./"+random+"wallpaper.xml",true);
         File f = new File("./"+random+"wallpaper.xml");
-        f.createNewFile();    
-        fw.write
-(
-        Filename[Timer]
-);
+        if(!f.exists()){f.createNewFile();}    
+        for(int i=0;i<Timer;i++)
+{
+	fw.write("\r\n"+Filename[i]);
+	fw.flush();
+	fw.close();
+}
+fw.flush();
+fw.close();
 }
 public void Return(int Number)
 	{
-	 	Filename=new String[Timer];	
 		FileDialog fd = new FileDialog(f,"開啟圖檔",FileDialog.LOAD);
 		fd.setVisible(true);
 		Filename[Number]=fd.getDirectory() + 
