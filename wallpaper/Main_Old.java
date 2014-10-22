@@ -42,18 +42,14 @@ public static void Show()
 public void RUN() throws Exception
 {
 	int random = (int)(Math.random()*100000);
-
-	String path="./"+random+"wallpaper.xml";
-	FileWriter fw = new FileWriter(path,true);
-        File f = new File(path);
+	FileWriter fw = new FileWriter("./"+random+"wallpaper.xml",true);
+        File f = new File("./"+random+"wallpaper.xml");
 	BufferedWriter bw=new BufferedWriter(fw);
-	bw.write("<wallpapers><wallpaper><name>"+path+"</name><filename>"+path+"</filename><options>zoom</options></wallpaper>");
-        if(!f.exists()){f.createNewFile();}
+        if(!f.exists()){f.createNewFile();}    
         for(int i=0;i<Timer;i++)
-{bw.write(
-	"<wallpaper><name>"+Filename[i]+"</name><filename>"+Filename[i]+"</filename><options>zoom</options><pcolor>#000000</pcolor><scolor>#000000</scolor><shade_type>solid</shade_type></wallpaper>"
-);}
-bw.write("</wallpapers>");
+{
+	bw.write("\r\n"+Filename[i]);
+}
 bw.close();
 }
 public void Return(int Number)
