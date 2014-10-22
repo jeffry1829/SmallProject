@@ -7,10 +7,11 @@ class Wallpaper implements ActionListener{
 	Button[] button;
 	static int Timer;
 	static JFrame f;
+	static String[] Filename;
 	public static void main(String args[])
 {
 	Timer=Integer.parseInt(args[0]);
-	public static String[] Filename=new String[Timer];	
+	Filename=new String[Timer];	
 	Show();
 }
 	//
@@ -47,8 +48,6 @@ public void RUN() throws Exception
         for(int i=0;i<Timer;i++)
 {
 	fw.write("\r\n"+Filename[i]);
-	fw.flush();
-	fw.close();
 }
 fw.flush();
 fw.close();
