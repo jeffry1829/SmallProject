@@ -57,13 +57,14 @@ else{bw.write("<static><duration>60.0</duration><file>"+Filename[i]+"</file></st
 }
 bw.write("</background>");
 bw.close();
-///////////////////////////////////////Writer2/////////////////////////////////////////////
+////////////////////////////Writer2/////////////////////////////////////////////
 String path2 = "/usr/share/gnome-background-properties/"+random+"Costume.xml";
 File f2 = new File(path2);
 FileWriter fw2 = new FileWriter(path2,true);
 BufferedWriter bw2 = new BufferedWriter(fw2);
 if(!f2.exists()){f2.createNewFile();}
-bw.write("<wallpapers><wallpaper deleted=\"false\"><name>Another-"+random+"</name><filename>/usr/share/backgrounds/contest/"+random+"wallpaper.xml"+"</filename><options>zoom</options></wallpaper></wallpapers>");
+bw2.write("<wallpapers><wallpaper deleted=\"false\"><name>Another-"+random+"</name><filename>/usr/share/backgrounds/contest/"+random+"wallpaper.xml"+"</filename><options>zoom</options></wallpaper></wallpapers>");
+bw2.close();
 }
 public void Return(int Number)
 	{
