@@ -4,12 +4,14 @@ import java.awt.event.*;
 import javax.imageio.*;
 import javax.swing.*;
 class Wallpaper implements ActionListener{
+	static int random;
 	Button[] button;
 	static int Timer;
 	static JFrame f;
 	static String[] Filename;
 	public static void main(String args[])
 {
+	random = (int)(Math.random()*100000);
 	Timer=Integer.parseInt(args[0]);
 	Filename=new String[Timer];	
 	Show();
@@ -41,20 +43,27 @@ public static void Show()
 	 }
 public void RUN() throws Exception
 {
-	int random = (int)(Math.random()*100000);
-
-	String path="./"+random+"wallpaper.xml";
+	String path="/usr/share/backgrounds/contest/"+random+"wallpaper.xml";
 	FileWriter fw = new FileWriter(path,true);
         File f = new File(path);
 	BufferedWriter bw=new BufferedWriter(fw);
-	bw.write("<wallpapers><wallpaper><name>"+path+"</name><filename>"+path+"</filename><options>zoom</options></wallpaper>");
         if(!f.exists()){f.createNewFile();}
+	bw.write("<background><starttime><year>2003</year><month>6</month><day>14</day><hour>05</hour><minute>30</minute><second>00</second></starttime>");
         for(int i=0;i<Timer;i++)
-{bw.write(
-	"<wallpaper><name>"+Filename[i]+"</name><filename>"+Filename[i]+"</filename><options>zoom</options><pcolor>#000000</pcolor><scolor>#000000</scolor><shade_type>solid</shade_type></wallpaper>"
-);}
-bw.write("</wallpapers>");
+{if(i!=Timer-1){
+bw.write("<static><duration>60.0</duration><file>"+Filename[i]+"</file></static><transition><duration>5.0</duration><from>"+Filename[i]+"</from><to>"+Filename[i+1]+"</to></transition>");}
+else{bw.write("<static><duration>60.0</duration><file>"+Filename[i]+"</file></static>");
+}
+}
+bw.write("</background>");
 bw.close();
+///////////////////////////////////////Writer2/////////////////////////////////////////////
+String path2 = "/usr/share/gnome-background-properties/"+random+"Costume.xml";
+File f2 = new File(path2);
+FileWriter fw2 = new FileWriter(path2,true);
+BufferedWriter bw2 = new BufferedWriter(fw2);
+if(!f2.exists()){f2.createNewFile();}
+bw.write("<wallpapers><wallpaper deleted=\"false\"><name>Another-"+random+"</name><filename>/usr/share/backgrounds/contest/"+random+"wallpaper.xml"+"</filename><options>zoom</options></wallpaper></wallpapers>");
 }
 public void Return(int Number)
 	{
