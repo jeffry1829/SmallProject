@@ -1,25 +1,31 @@
 import java.util.*;
-import java.awt.Robot;
 import java.awt.*;
 import javax.swing.*;
 import java.net.*;
 import java.io.*;
-public class IRCbot implements Runnable{
+public class IRCbot extends Thread implements Runnable{
 	ArrayList arraylist;
 	BufferedReader br;
-	BufferedWriter bw;
+	static BufferedWriter bw;
 	Socket socket;
-	public IRCbot(String server,String channel,String nickname) throws IOException, Exception{
+	String server;
+	String channel;
+	String nickname;
+	Boolean connect;
+	public void run(){ //connect IRC server
+		System.out.println("1");
+		try{
 		socket=new Socket(server,6667);
 		br=new BufferedReader(new InputStreamReader(socket.getInputStream()));
 		bw=new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-		bw.write("NICK " +nickname + "\r\n");
+		   	System.out.println(bw);
+			bw.write("NICK " +nickname + "\r\n");
         		bw.write("USER " +nickname + " 8 * : I am a Bot \r\n");
         		bw.write("JOIN " + channel + "\r\n");
         		bw.flush( );
         		String content;
         		Boolean bool=false;
-        		while((content=br.readLine())!=null){
+        		while((content=br.readLine())!=null){ //read lines from irc
         			System.out.println(content);
         			if(content.contains("pet_test")){
         				bw.write("PRIVMSG "+channel+" :pet_test requirement \r\n");
@@ -35,31 +41,22 @@ public class IRCbot implements Runnable{
         						bw.flush();
         						bool=false;
         			}
-        			}	
-        		}
-	public IRCbot(String server, String channel) throws IOException, Exception{
-		Scanner scanner=new Scanner(System.in);
-        		String say=scanner.next();
-        		//socket=new Socket(server,6667);
-        		//bw=new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-        		bw.write("PRIVMSG "+channel+" : "+say+"\r\n");
-        		bw.flush();
-	}
+        			}
+        		}catch(IOException e1){}
+        		 catch(Exception e2){}	
+        		}        	
+        	public IRCbot(){} //For new IRCbot()
+		public IRCbot(String server, String channel,String nickname){
+			this.server=server;
+			this.channel=channel;
+			this.nickname=nickname;
+			System.out.println(this.server);
+			System.out.println(server);
+}
 	public static void main(String args[]) throws IOException, Exception{
-		Thread job_open=new Thread(new IRCbot("irc.freenode.net","#ysitd","petjelinux_bot"));
-		Thread job_say=new Thread(new IRCbot("irc.freenode.net","#ysitd")); //#petjelinux_testchannel
-		job_open.start();
+		Thread job_connect = new Thread(new IRCbot("irc.freenode.net","#ysitd","petjelinux_bot"));
+		Thread job_say=new Thread(new IRCbot_say("irc.freenode.net","#ysitd",new IRCbot()));
+		job_connect.start();
 		job_say.start();
-	}
-	public void PAUSE(long minisec){
-		try{
-		Thread.sleep(minisec);
-	}catch(InterruptedException e1){}
-	}
-	@Override
-	public void run(){
-		for(;;){
-			PAUSE(10L);
-		}
 	}
 }
