@@ -12,6 +12,10 @@ public class IRCbot extends Thread implements Runnable{
 	String channel;
 	String nickname;
 	Boolean connect;
+	public IRCbot(long sec1, long sec2){
+		java.util.Timer timer=new java.util.Timer();
+		timer.schedule(new timer(this),sec1*1000,sec2*1000);		
+	}
 	public void run(){ //connect IRC server
 		try{
 		socket=new Socket(server,6667);
@@ -58,5 +62,6 @@ public class IRCbot extends Thread implements Runnable{
 		Thread job_say=new Thread(new IRCbot_say("irc.freenode.net","#ysitd",new IRCbot()));
 		job_connect.start();
 		job_say.start();
+		new IRCbot(20,60);
 	}
 }
