@@ -25,7 +25,6 @@ class IRCbot_say extends Thread implements Runnable{
 							  //BUT it only was set IN THAT BLOCK
 			instance.bw.write("PRIVMSG "+channel+" : "+say+"\r\n");
         		instance.bw.flush();
-				System.out.println("ok "+say);
 		}catch(IOException e1){}
 		  catch(Exception e2){}
 		}

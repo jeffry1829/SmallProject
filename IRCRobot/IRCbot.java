@@ -13,12 +13,10 @@ public class IRCbot extends Thread implements Runnable{
 	String nickname;
 	Boolean connect;
 	public void run(){ //connect IRC server
-		System.out.println("1");
 		try{
 		socket=new Socket(server,6667);
 		br=new BufferedReader(new InputStreamReader(socket.getInputStream()));
 		bw=new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-		   	System.out.println(bw);
 			bw.write("NICK " +nickname + "\r\n");
         		bw.write("USER " +nickname + " 8 * : I am a Bot \r\n");
         		bw.write("JOIN " + channel + "\r\n");
@@ -41,6 +39,10 @@ public class IRCbot extends Thread implements Runnable{
         						bw.flush();
         						bool=false;
         			}
+				else if((content=br.readLine()).startsWith("PING")){
+	bw.write("PONG "+(content=br.readLine()).substring(5)+" \r\n");
+	bw.flush();
+}
         			}
         		}catch(IOException e1){}
         		 catch(Exception e2){}	
@@ -50,8 +52,6 @@ public class IRCbot extends Thread implements Runnable{
 			this.server=server;
 			this.channel=channel;
 			this.nickname=nickname;
-			System.out.println(this.server);
-			System.out.println(server);
 }
 	public static void main(String args[]) throws IOException, Exception{
 		Thread job_connect = new Thread(new IRCbot("irc.freenode.net","#ysitd","petjelinux_bot"));
