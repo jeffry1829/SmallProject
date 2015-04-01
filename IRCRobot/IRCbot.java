@@ -34,12 +34,12 @@ public class IRCbot extends Thread implements Runnable{
         				bw.flush();
         			}
         			else if(content.contains("bot,call me master")){
-        				bw.write("PRIVMSG "+channel+" :本、本來是不想說的..但如、如果誠心的求..求我的話.. 說、說..說說看也..也不是不能考慮啦！！ \r\n");
+        				bw.write("PRIVMSG "+channel+" :xxx \r\n");
         				bw.flush();
         				bool=true;				
         				}
         			else if((content=br.readLine()).contains("求你了!")&&bool==true){
-        						bw.write("PRIVMSG "+channel+" :主、主..主人大大? \r\n");
+        						bw.write("PRIVMSG "+channel+" :xxx \r\n");
         						bw.flush();
         						bool=false;
         			}
@@ -58,8 +58,8 @@ public class IRCbot extends Thread implements Runnable{
 			this.nickname=nickname;
 }
 	public static void main(String args[]) throws IOException, Exception{
-		Thread job_connect = new Thread(new IRCbot("irc.freenode.net","#ysitd","petjelinux_bot"));
-		Thread job_say=new Thread(new IRCbot_say("irc.freenode.net","#ysitd",new IRCbot()));
+		Thread job_connect = new Thread(new IRCbot("irc.freenode.net","#testchannel","petjelinux_bot"));
+		Thread job_say=new Thread(new IRCbot_say("irc.freenode.net","#testchannel",new IRCbot()));
 		job_connect.start();
 		job_say.start();
 		new IRCbot(20,60);
