@@ -9,11 +9,7 @@ class Main
 	static JLabel label;
 	public static void main(String[] args)
 {
-  //ImageComponent ic=new ImageComponent("./mc1.jpg");
-  //ic.Show();]
-	  //Anotherfunction af=new Anotherfunction("./mc1.jpg");
-	  //af.Show();
-	  MouseEvents mouse = new MouseEvents(frame,label,"./mc1.jpg");
+	  MouseEvents mouse = new MouseEvents(frame,label,"imagepath");
 	  mouse.startx();
 }
 }
