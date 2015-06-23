@@ -1,9 +1,0 @@
-name: pjlike
-main: pj.pjlike.main
-version: 1
-permissions:
-  pjhelp:
-    default: op
-commands:
-  pj:
-    description: sss

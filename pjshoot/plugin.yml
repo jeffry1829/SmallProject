@@ -1,7 +1,0 @@
-name: pjshotter
-main: pj.pjshotter.Main
-version: 1
-depend: [Vault]
-commands:
-  pjexp:
-    description: sss
