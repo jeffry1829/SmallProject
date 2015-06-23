@@ -5,10 +5,10 @@ import java.net.*;
 
 public class IRCbot{
 	BufferedReader br;
-	BufferedWriter bw; //because the bw in all he class IS THE SAME ONE
+	BufferedWriter bw;
 	Socket socket;
 	String server;
-	String channel; //the same as above one
+	String channel;
 	String nickname;
 	Boolean connect;
 	String okmessage;
@@ -33,7 +33,7 @@ public class IRCbot{
 		}
 		
 	public static void main(String args[]) throws IOException, Exception{
-		Thread job_display = new Thread(new display("irc.freenode.net","#petjelinux_test","petjelinux_bot"));
+		Thread job_display = new Thread(new display("server","channel","testbot's name"));
 		Thread job_say=new Thread(new IRCbot_say());
 		job_display.start();
 		job_say.start();

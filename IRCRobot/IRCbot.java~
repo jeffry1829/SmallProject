@@ -1,22 +1,21 @@
 package IRCbot;
 
-import java.util.*;
 import java.io.*;
 import java.net.*;
 
 public class IRCbot{
 	BufferedReader br;
-	static BufferedWriter bw;
+	BufferedWriter bw; //because the bw in all he class IS THE SAME ONE
 	Socket socket;
 	String server;
-	String channel;
+	String channel; //the same as above one
 	String nickname;
 	Boolean connect;
 	String okmessage;
 	String content;
 			
 		public IRCbot(){}
-	
+		
 		public IRCbot(String server, String channel,String nickname){
 			this.server=server;
 			this.channel=channel;
@@ -34,8 +33,8 @@ public class IRCbot{
 		}
 		
 	public static void main(String args[]) throws IOException, Exception{
-		Thread job_display = new Thread(new display("irc.freenode.net","#ysitd","petjelinux_bot"));
-		Thread job_say=new Thread(new IRCbot_say("irc.freenode.net","#ysitd",new IRCbot()));
+		Thread job_display = new Thread(new display("irc.freenode.net","#petjelinux_test","petjelinux_bot"));
+		Thread job_say=new Thread(new IRCbot_say());
 		job_display.start();
 		job_say.start();
 	}
