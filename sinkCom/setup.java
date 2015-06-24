@@ -2,7 +2,6 @@ import java.util.ArrayList;
 
 class setup{
   sinkCom comEle[]; //save references of class sinkCom (name and location)
-  boolean success; //make sure if setlocAname() is done
   boolean less=true; //make sure if there is anything left
   int guessTimes; //the variable that store how many times have you guess
   int lessShip; //combine with [boolean less]   when ==0 will turn less ot false
@@ -14,7 +13,7 @@ class setup{
       comEle[i].setName(comss[i]); //set ships' name
       int random=(int)(Math.random()*50); //random generate a slot of 49
       ArrayList<Integer> shipLocc=new ArrayList<Integer>(); //generate a changeable list to store ships' location
-      while(!success){ //stop until setup a ship successfully
+      while(true){ //stop until setup a ship successfully
       int vec=(int)(Math.random()*4); //random generate a direction(0-3)
         switch(vec){
           case 0: //left
@@ -22,7 +21,6 @@ class setup{
             shipLocc.add(random);                                        //*A 1 2 3 4 5 6 7 
             shipLocc.add(random-1);                                      //*B 1 2 3 4 5 6 7
             shipLocc.add(random-2);                                      //*C 1 2 3 4 5 6 7
-            success=true;                                                //*D 1 2 3 4 5 6 7
               break;                                                     //*E 1 2 3 4 5 6 7
           }else{continue;}                                               //*F 1 2 3 4 5 6 7
           case 1: //right                                                //*G 1 2 3 4 5 6 7
@@ -30,7 +28,6 @@ class setup{
             shipLocc.add(random);
             shipLocc.add(random+1);
             shipLocc.add(random+2);
-            success=true;
               break;
           }else{continue;}
           case 2: //dowm
@@ -38,7 +35,6 @@ class setup{
             shipLocc.add(random);
             shipLocc.add(random+7);
             shipLocc.add(random+14);
-            success=true;
               break;
           }else{continue;}
           case 3: //up
@@ -46,7 +42,6 @@ class setup{
             shipLocc.add(random);
             shipLocc.add(random-7);
             shipLocc.add(random-14);
-            success=true;
               break;
           }else{continue;}
           default: //to catch invisiable error
@@ -88,5 +83,4 @@ class setup{
   void Win(){
     System.out.println("You win \ntotal-guesses:" + guessTimes);
     System.exit(0); //the game's ending
-  }
-}
+  } 
