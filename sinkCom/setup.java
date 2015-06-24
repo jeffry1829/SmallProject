@@ -83,4 +83,5 @@ class setup{
   void Win(){
     System.out.println("You win \ntotal-guesses:" + guessTimes);
     System.exit(0); //the game's ending
-  } 
+  }
+} 
