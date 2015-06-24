@@ -53,7 +53,7 @@ class setup{
     }
   }
   void check(){
-    while(success && less){ //rerun while setup successfully and there're ships left
+    while(less){ //rerun while there're ships left
       getInput in=new getInput();
       String input=in.getIn(); //get users' inputs(guesses)
       symtoint sti=new symtoint();
