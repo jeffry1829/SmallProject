@@ -17,28 +17,28 @@ class setup{
       int vec=(int)(Math.random()*4); //random generate a direction(0-3)
         switch(vec){
           case 0: //left
-          if(!((random%7)<3)){ //make sure it will keep a line           //* What am I Talking About
+          if(!((random%7)<3)&&random-2>0){ //make sure it will keep a line           //* What am I Talking About
             shipLocc.add(random);                                        //*A 1 2 3 4 5 6 7 
             shipLocc.add(random-1);                                      //*B 1 2 3 4 5 6 7
             shipLocc.add(random-2);                                      //*C 1 2 3 4 5 6 7
               break;                                                     //*E 1 2 3 4 5 6 7
           }else{continue;}                                               //*F 1 2 3 4 5 6 7
           case 1: //right                                                //*G 1 2 3 4 5 6 7
-          if(!((random%7)>5)){  //make sure it will keep a line          /***************************/
+          if(!((random%7)>5)&&!((random%7)==0)&&random+2<=49){  //make sure it will keep a line          /***************************/
             shipLocc.add(random);
             shipLocc.add(random+1);
             shipLocc.add(random+2);
               break;
           }else{continue;}
           case 2: //dowm
-          if(!((49-random)<14)){ //make sure it will keep a line
+          if(!((49-random)<14)&&random+14<=49){ //make sure it will keep a line
             shipLocc.add(random);
             shipLocc.add(random+7);
             shipLocc.add(random+14);
               break;
           }else{continue;}
           case 3: //up
-          if(!((random-49)>(-14))){ //make sure it will keep a line
+          if(!((random-49)>(-14))&&random-14>0){ //make sure it will keep a line
             shipLocc.add(random);
             shipLocc.add(random-7);
             shipLocc.add(random-14);
@@ -60,6 +60,7 @@ class setup{
       symtoint sti=new symtoint();
       int guess=sti.convert(input); //convert users' inputs to slot number(Integer)
         if(guess==-1){ //if input format incorrect rerun while{}
+          System.out.println("input incorrect format");
           continue;
         }
       ArrayList<Integer> shipLocc; //store ships' locations
@@ -67,7 +68,6 @@ class setup{
         for(sinkCom ship : comEle){
           int index=ship.getLoc().indexOf(guess); //check if guess==location return index or return -1
           shipLocc=ship.getLoc(); //store ship's(only one) location to shipLocc to continue check easily
-          System.out.println(shipLocc); //be used to debug
           if(index>=0){ //if guess==location
               System.out.println("hit " + ship.getName());
               shipLocc.remove(index); //remove the hitted slot from the arraylist
@@ -77,7 +77,9 @@ class setup{
                 System.out.println("sink" + ship.getName());
               }
               if(lessShip==0){less=false; Win();} //if sink all of the ships
-          }else{System.out.println("miss");} //if guess!=location
+          }
+          else if(index<0&&ship.getLoc().isEmpty()){}
+          else{System.out.println("miss");} //if guess!=location
         }
     }
   }
