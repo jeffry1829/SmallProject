@@ -48,6 +48,7 @@ class setup{
           System.out.println("What is going on");
           break;
         }
+          break;
       }
       comEle[i].setLoc(shipLocc);         
     }
@@ -84,4 +85,4 @@ class setup{
     System.out.println("You win \ntotal-guesses:" + guessTimes);
     System.exit(0); //the game's ending
   }
-} 
+}
