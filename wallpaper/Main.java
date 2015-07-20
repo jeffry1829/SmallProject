@@ -13,12 +13,12 @@ class Wallpaper implements ActionListener{
   public static void main(String args[]){
     Wallpaper wall=new Wallpaper();
     wall.Timer=Integer.parseInt(args[0]);
-    wall.Filename=new String[Timer]; 
+    wall.Filename=new String[wall.Timer]; 
     wall.Show();
   }
  
   public void Show(){
-    f = new JFrame("請選擇");   
+    f = new JFrame("Please choose pictures. *Warning* MUST USE SUPERUSER'S PERMISSION");   
     f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
     f.setLayout(new FlowLayout());
     f.setLocationRelativeTo(null);
@@ -42,7 +42,8 @@ class Wallpaper implements ActionListener{
     File f = new File(path);
     BufferedWriter bw=new BufferedWriter(fw);
     if(!f.exists()){f.createNewFile();}
-      bw.write("<background><starttime><year>2003</year><month>6</month><day>14</day><hour>05</hour><minute>30</minute><second>00</second></starttime>");
+      bw.write("<background><starttime><year>2003</year><month>6</month><day>14</day><hour>05</hour><minute>30</minute><second>
+        +"00</second></starttime>");
     for(int i=0;i<Timer;i++){
       if(i != Timer-1){
         bw.write("<static><duration>60.0</duration><file>"+Filename[i]+"</file></static><transition><duration>5.0</duration><from>"
@@ -52,6 +53,7 @@ class Wallpaper implements ActionListener{
       }
     }
     bw.write("</background>");
+    bw.flush();
     bw.close();
       ////////////////////////////Writer2///////////////////////////////
     String path2 = "/usr/share/gnome-background-properties/"+random+"Costume.xml";
@@ -61,19 +63,21 @@ class Wallpaper implements ActionListener{
     if(!f2.exists()){f2.createNewFile();} //only use 1 line
     bw2.write("<wallpapers><wallpaper deleted=\"false\"><name>Another-"+random+"</name><filename>/usr/share/backgrounds/contest/"
       +random+"wallpaper.xml"+"</filename><options>zoom</options></wallpaper></wallpapers>");
+    bw2.flush();
     bw2.close();
+      return 0;
   }
 
   public void Return(int Number){
     FileDialog fd = new FileDialog(f,"開啟圖檔",FileDialog.LOAD);
     fd.setVisible(true);
-    Filename[Number]=fd.getDirectory() + 
-    System.getProperty("file.separator").charAt(0) + fd.getFile(); 
+    Filename[Number]=fd.getDirectory() 
+      +System.getProperty("file.separator").charAt(0) + fd.getFile(); 
   }
 
   public void actionPerformed(ActionEvent e){
     if(e.getActionCommand()!="RUN!"){
-    Return(Integer.parseInt(e.getActionCommand()));
+      Return(Integer.parseInt(e.getActionCommand()));
     }
     else{
       try{
