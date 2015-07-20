@@ -25,11 +25,11 @@ class Wallpaper implements ActionListener{
     button=new Button[Timer];
     for(int i=0;i<Timer;i++){
       button[i]=new Button(""+i);
-      button[i].addActionListener(new Wallpaper());
-      f.add(wall.button[i]); 
+      button[i].addActionListener(this);
+      f.add(button[i]); 
     }
     Button RUN=new Button("RUN!");
-    RUN.addActionListener(new Wallpaper());
+    RUN.addActionListener(this);
     f.add(RUN);
     f.pack();
     f.setVisible(true); 
@@ -41,9 +41,11 @@ class Wallpaper implements ActionListener{
     BufferedWriter bw=new BufferedWriter(fw);
     if(!f.exists()){f.createNewFile();}
       bw.write("<background><starttime><year>2003</year><month>6</month><day>14</day><hour>05</hour><minute>30</minute><second>00</second></starttime>");
-    for(int i=0;i<Timer;i++){if(i!=Timer-1){
-      bw.write("<static><duration>60.0</duration><file>"+Filename[i]+"</file></static><transition><duration>5.0</duration><from>"
-        +Filename[i]+"</from><to>"+Filename[i+1]+"</to></transition>");}
+    for(int i=0;i<Timer;i++){
+      if(i != Timer-1){
+        bw.write("<static><duration>60.0</duration><file>"+Filename[i]+"</file></static><transition><duration>5.0</duration><from>"
+          +Filename[i]+"</from><to>"+Filename[i+1]+"</to></transition>");
+      }
       else{bw.write("<static><duration>60.0</duration><file>"+Filename[i]+"</file></static>");
       }
     }
@@ -68,10 +70,11 @@ class Wallpaper implements ActionListener{
   public void actionPerformed(ActionEvent e){
     if(e.getActionCommand()!="RUN!"){
     Return(Integer.parseInt(e.getActionCommand()));
-    }else{
-    try{
-      RUN();
-    }catch(Exception e1){}
-     }
+    }
+    else{
+      try{
+        RUN();
+      }catch(Exception e1){}
+    }
   }
 }
