@@ -1,10 +1,12 @@
 import java.util.ArrayList;
+import javax.swing.*;
 
 class setup{
   sinkCom comEle[]; //save references of class sinkCom (name and location)
   boolean less=true; //make sure if there is anything left
   int guessTimes; //the variable that store how many times have you guess
   int lessShip; //combine with [boolean less]   when ==0 will turn less ot false
+  
   void setlocAname(String[] comss){
     comEle=new sinkCom[comss.length]; //make sure how many slot comEle[] will have
     lessShip=comss.length; 
