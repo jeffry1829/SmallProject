@@ -4,19 +4,20 @@ import java.awt.event.*;
 import javax.imageio.*;
 import javax.swing.*;
 class Wallpaper implements ActionListener{
-    int random;
+    int random=(int)(Math.random()*100000);
     Button[] button;
     int Timer;
     JFrame f;
     String[] Filename;
+
   public static void main(String args[]){
-    random = (int)(Math.random()*100000);
-    Timer=Integer.parseInt(args[0]);
-    Filename=new String[Timer]; 
-    Show();
+    Wallpaper wall=new Wallpaper();
+    wall.Timer=Integer.parseInt(args[0]);
+    wall.Filename=new String[Timer]; 
+    wall.Show();
   }
  
-  public static void Show(){
+  public void Show(){
     f = new JFrame("請選擇");   
     f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
     f.setLayout(new FlowLayout());
@@ -34,6 +35,7 @@ class Wallpaper implements ActionListener{
     f.pack();
     f.setVisible(true); 
   }
+
   public void RUN() throws Exception{
     String path="/usr/share/backgrounds/contest/"+random+"wallpaper.xml";
     FileWriter fw = new FileWriter(path,true);
@@ -61,12 +63,14 @@ class Wallpaper implements ActionListener{
       +random+"wallpaper.xml"+"</filename><options>zoom</options></wallpaper></wallpapers>");
     bw2.close();
   }
+
   public void Return(int Number){
     FileDialog fd = new FileDialog(f,"開啟圖檔",FileDialog.LOAD);
     fd.setVisible(true);
     Filename[Number]=fd.getDirectory() + 
     System.getProperty("file.separator").charAt(0) + fd.getFile(); 
   }
+
   public void actionPerformed(ActionEvent e){
     if(e.getActionCommand()!="RUN!"){
     Return(Integer.parseInt(e.getActionCommand()));
